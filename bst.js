@@ -32,6 +32,28 @@ class BST {
     else return node.value;
   }
 
+  remove(key){
+    this.root = this.removeHelper(key, this.root);
+  }
+
+  removeHelper(key, node){
+    if(!node) return;
+
+    if(key < node.key) node.left = this.removeHelper(key, node.left);
+    else if(key > node.key) node.right = this.removeHelper(key, node.right);
+    else if(!node.left) return node.right;
+    else if(!node.right) return node.left;
+    else {
+      const successor = this.min(node.right);
+      const removedNode = node;
+      successor.left = removedNode.left;
+      successor.right = this.removeMin(removedNode.right);
+      node = successor;
+    }
+    
+    return node;
+  }
+
   print(node = this.root){
     if(!node) return;
 
@@ -52,11 +74,7 @@ if(require.main === module){
   }); 
   bst.print();
 
-  // console.log('Deleting');
-  // [1, 2, 3, 9 ].forEach(num => bst.remove(num));
-  // bst.print();
-  // console.log(`The height of BST is:`, heightOfBST(bst.root));
-  // console.log(`BST is balanced:`, checkBalanced(bst.root));
-  // console.log(`BST is a binary search tree:`, checkBST(bst.root));
-  // nthLast(bst.root, 3);
+  console.log('\nDeleting keys from BST');
+  [1, 2, 3, 9 ].forEach(num => bst.remove(num));
+  bst.print();
 }
