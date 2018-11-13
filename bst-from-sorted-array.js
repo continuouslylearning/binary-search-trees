@@ -11,10 +11,7 @@ class Node {
 }
 
 // create BST from a sorted array
-function createBST(arr, lo = null, hi = null){
-  if(lo === null) lo = 0;
-  if(hi === null) hi = arr.length - 1;
-
+function createBST(arr, lo = 0, hi = arr.length - 1){
   if(lo > hi) return null;
 
   const mid = Math.floor(lo + (hi - lo)/2);
@@ -33,5 +30,5 @@ if(require.main = module){
   console.log(bst);
   console.log('Tree is balanced:', isBalanced(bst));
   console.log('Tree is a bst:', isBST(bst));
-  console.log('height of the tree is:', heightOfBST(bst));
+  console.log('Height of the tree is:', heightOfBST(bst));
 }
