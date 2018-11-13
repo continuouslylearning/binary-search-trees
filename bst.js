@@ -1,4 +1,5 @@
 const Node = require('./node');
+const isBST = require('./is-bst');
 
 class BST {
   constructor(){
