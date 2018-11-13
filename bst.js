@@ -1,5 +1,6 @@
 const Node = require('./node');
 const isBST = require('./is-bst');
+const heightOfBST = require('./height');
 
 class BST {
   constructor(){
@@ -89,7 +90,10 @@ if(require.main === module){
   }); 
   bst.print();
 
-  console.log('\nDeleting keys from BST');
-  [1, 2, 3, 9, 4, 6].forEach(num => bst.remove(num));
-  bst.print();
+  // console.log('\nDeleting keys from BST');
+  // [1, 2, 3, 9, 4, 6].forEach(num => bst.remove(num));
+  // bst.print();
+  console.log(`\`bst\` is a binary search tree:`, isBST(bst.root));
+  console.log(`The height of \`bst\` is:`, heightOfBST(bst.root));
+
 }
