@@ -19,4 +19,17 @@ class BST {
 
     return node;
   }
+
+  get(key){
+    return this.getHelper(key, this.root);
+  }
+
+  getHelper(key, node){
+    if(!node) return null;
+
+    if(key < node.key) return this.getHelper(key, node.left);
+    else if(key > node.key) return this.getHelper(key, node.right);
+    else return node.value;
+  }
 }
+
