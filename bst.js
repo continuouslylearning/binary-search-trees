@@ -93,18 +93,18 @@ if(require.main === module){
   }); 
   bst.print();
   
-  console.log(`\`bst\` is a binary search tree:`, isBST(bst.root));
-  console.log(`The height of \`bst\` is:`, heightOfBST(bst.root));
-  console.log(`\`bst\` is balanced:`, isBalanced(bst.root));
-  console.log(`The key-value pair with third largest key in \`bst\` is:`, nthLargest(bst.root, 3));
+  console.log('`bst` is a binary search tree:', isBST(bst.root));
+  console.log('The height of `bst` is:', heightOfBST(bst.root));
+  console.log('`bst` is balanced:', isBalanced(bst.root));
+  console.log('The key-value pair with third largest key in `bst` is:', nthLargest(bst.root, 3));
   createListOfDepths(bst.root);
-  
+
   console.log('\nDeleting keys from BST');
   [1, 2, 3, 9, 4, 6].forEach(num => bst.remove(num));
   bst.print();
-  console.log(`\`bst\` is a binary search tree after deletions:`, isBST(bst.root));
-  console.log(`The height of \`bst\` after deletions is:`, heightOfBST(bst.root));
-  console.log(`\`bst\` is balanced after deletions:`, isBalanced(bst.root));
-  console.log(`The key-value pair with third largest key in \`bst\` after deletions is:`, nthLargest(bst.root, 3));
+  console.log('`bst` is a binary search tree after deletions:', isBST(bst.root));
+  console.log('The height of `bst` after deletions is:', heightOfBST(bst.root));
+  console.log('`bst` is balanced after deletions:', isBalanced(bst.root));
+  console.log('The key-value pair with third largest key in `bst` after deletions is:', nthLargest(bst.root, 3));
   createListOfDepths(bst.root);
 }

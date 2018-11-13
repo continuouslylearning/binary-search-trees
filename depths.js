@@ -20,7 +20,6 @@ function createListOfDepthsHelper(node, depth, lists){
 }
 
 function printListOfDepths(lists){
-  
   let depth = 0;
   for(let i = 0; i < lists.length; i++){
     let row = `Depth ${depth}: `;

@@ -2,7 +2,6 @@ const errorVal = Number.MIN_VALUE;
 
 function isBalanced(node){
   return isBalancedHelper(node) !== errorVal;
-  ;
 }
 
 function isBalancedHelper(node){

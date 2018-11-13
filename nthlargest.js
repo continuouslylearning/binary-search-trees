@@ -11,9 +11,7 @@ function nthLargestHelper(node, n, state){
   nthLargestHelper(node.right, n, state);
   if(state.result) return;
   state.count++;
-  if(state.count === n) {
-    state.result = { key: node.key, value: node.value };
-  }
+  if(state.count === n) state.result = { key: node.key, value: node.value };
   nthLargestHelper(node.left, n, state);
 }
 

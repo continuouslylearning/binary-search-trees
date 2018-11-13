@@ -25,7 +25,7 @@ function createBST(arr, lo = 0, hi = arr.length - 1){
   return node;
 }
 
-if(require.main = module){
+if(require.main === module){
   const arr = [ 3, 5, 7, 9, 11, 13, 15 ];
   const bst = createBST(arr);
   console.log('Tree is balanced:', isBalanced(bst));
