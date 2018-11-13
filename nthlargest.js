@@ -1,4 +1,3 @@
-
 function nthLargest(node, n){
   const state = { count: 0, result: null };
   nthLargestHelper(node, n, state);
