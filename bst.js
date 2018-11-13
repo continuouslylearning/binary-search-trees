@@ -1,6 +1,7 @@
 const Node = require('./node');
 const isBST = require('./is-bst');
 const heightOfBST = require('./height');
+const isBalanced = require('./balanced');
 
 class BST {
   constructor(){
@@ -46,7 +47,7 @@ class BST {
 
       const successor = this.min(node.right);
       const removedNode = node;
-      // only assign left child AFTER right child
+      // only assign left child to successor AFTER right child
       successor.right = this.removeMin(removedNode.right);
       successor.left = removedNode.left;
       return successor;
@@ -89,11 +90,15 @@ if(require.main === module){
     bst.put(num, num);
   }); 
   bst.print();
-
-  // console.log('\nDeleting keys from BST');
-  // [1, 2, 3, 9, 4, 6].forEach(num => bst.remove(num));
-  // bst.print();
+  
   console.log(`\`bst\` is a binary search tree:`, isBST(bst.root));
   console.log(`The height of \`bst\` is:`, heightOfBST(bst.root));
+  console.log(`\`bst\` is balanced:`, isBalanced(bst.root));
 
+  console.log('\nDeleting keys from BST');
+  [1, 2, 3, 9, 4, 6].forEach(num => bst.remove(num));
+  bst.print();
+  console.log(`\`bst\` is a binary search tree:`, isBST(bst.root));
+  console.log(`The height of \`bst\` is:`, heightOfBST(bst.root));
+  console.log(`\`bst\` is balanced:`, isBalanced(bst.root));
 }
