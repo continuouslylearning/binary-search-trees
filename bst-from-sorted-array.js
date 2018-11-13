@@ -1,6 +1,7 @@
 const isBalanced = require('./balanced');
 const isBST = require('./is-bst');
 const heightOfBST = require('./height');
+const createListOfDepths = require('./depths');
 
 class Node {
   constructor(key){
@@ -27,8 +28,8 @@ function createBST(arr, lo = 0, hi = arr.length - 1){
 if(require.main = module){
   const arr = [ 3, 5, 7, 9, 11, 13, 15 ];
   const bst = createBST(arr);
-  console.log(bst);
   console.log('Tree is balanced:', isBalanced(bst));
   console.log('Tree is a bst:', isBST(bst));
   console.log('Height of the tree is:', heightOfBST(bst));
+  createListOfDepths(bst);
 }
