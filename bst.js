@@ -1,7 +1,6 @@
 const Node = require('./node');
 
 class BST {
-
   constructor(){
     this.root = null;
   }
@@ -10,25 +9,25 @@ class BST {
     this.root = this.putHelper(key, value, this.root);
   }
 
-  putHelper(key, value, node){
+  putHelper(key, value, node = this.root){
     if(!node) return new Node(key, value);
 
     if(key < node.key) node.left = this.putHelper(key, value, node.left);
-    else if(key > node.key) node.right = this.putHelper(key, value, node.right);
+    else if(key > node.key) node.right = this.putHelper(key, value, node.right);  
     else node.value = value;
 
     return node;
   }
 
-  get(key){
-    return this.getHelper(key, this.root);
+  get(key, value){
+    return this.getHelper(key, value, this.root);
   }
 
-  getHelper(key, node){
+  getHelper(key, value, node){
     if(!node) return null;
 
-    if(key < node.key) return this.getHelper(key, node.left);
-    else if(key > node.key) return this.getHelper(key, node.right);
+    if(key < node.key) return this.getHelper(key, value, node.left);
+    else if(key > node.key) return this.getHelper(key, value, node.right);
     else return node.value;
   }
 
@@ -39,29 +38,44 @@ class BST {
   removeHelper(key, node){
     if(!node) return;
 
-    if(key < node.key) node.left = this.removeHelper(key, node.left);
-    else if(key > node.key) node.right = this.removeHelper(key, node.right);
-    else if(!node.left) return node.right;
-    else if(!node.right) return node.left;
-    else {
+    if(key === node.key){
+      if(!node.left) return node.right;
+      else if(!node.right) return node.left;
+
       const successor = this.min(node.right);
       const removedNode = node;
-      successor.left = removedNode.left;
+      // only assign left child AFTER right child
       successor.right = this.removeMin(removedNode.right);
-      node = successor;
+      successor.left = removedNode.left;
+      return successor;
     }
-    
+
+    if(key < node.key) node.left = this.removeHelper(key, node.left); 
+    else node.right = this.removeHelper(key, node.right);
+
     return node;
+  }
+
+  removeMin(node){
+    if(!node.left) {
+      return node.right;
+    } else {
+      node.left = this.removeMin(node.left);
+      return node;
+    }
+  }
+
+  min(node){
+    if(!node.left) return node;
+    return this.min(node.left);
   }
 
   print(node = this.root){
     if(!node) return;
-
     this.print(node.left);
     console.log(`${node.key}: ${node.value}`);
     this.print(node.right);
   }
-
 }
 
 if(require.main === module){
@@ -75,6 +89,6 @@ if(require.main === module){
   bst.print();
 
   console.log('\nDeleting keys from BST');
-  [1, 2, 3, 9 ].forEach(num => bst.remove(num));
+  [1, 2, 3, 9, 4, 6].forEach(num => bst.remove(num));
   bst.print();
 }
