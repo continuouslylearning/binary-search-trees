@@ -20,12 +20,15 @@ function createListOfDepthsHelper(node, depth, lists){
 }
 
 function printListOfDepths(lists){
+  
+  let depth = 0;
   for(let i = 0; i < lists.length; i++){
-    let row = '';
+    let row = `Depth ${depth}: `;
     for(let j = 0; j < lists[i].length; j++){
-      row += lists[i][j].key + ' '.repeat(4);
+      row += lists[i][j].key + ' ';
     }
     console.log(row);
+    depth++;
   }
 }
 
